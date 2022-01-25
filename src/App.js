@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
 
-function App() {
+// Components
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import Features from './components/Features/Features';
+import Articles from './components/Articles/Articles';
+import Footer from './components/Footer/Footer';
+
+// Styling
+import './styles/style.scss';
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle('scroll-lock', open);
+  }, [open]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar open={open} setOpen={setOpen} />
+      <Hero />
+      <Features />
+      <Articles />
+      <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
